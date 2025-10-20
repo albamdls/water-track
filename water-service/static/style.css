@@ -1,0 +1,355 @@
+/* === ESTILO GENERAL === */
+
+body {
+    font-family: 'Montserrat', sans-serif;
+    background: linear-gradient(135deg, #74ebd5, #ACB6E5);
+    color: #2d3436;
+    text-align: center;
+    margin: 0;
+    min-height: 100vh;
+    padding: 30px;
+}
+
+.container {
+    max-width: 450px;
+    margin: 20px auto;
+    background: rgba(255, 255, 255, 0.95);
+    border-radius: 20px;
+    padding: 30px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+}
+
+h1 {
+    color: #0984e3;
+    font-weight: 600;
+    margin-bottom: 30px;
+}
+
+.wave {
+    animation: wave 2s infinite;
+    display: inline-block;
+}
+
+.goal {
+    font-size: 1.2rem;
+    color: #636e72;
+    margin-bottom: 30px;
+}
+
+/* === NUEVA BOTELLA === */
+
+.bottle-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 40px 0;
+}
+
+.water-bottle {
+    position: relative;
+    width: 100px;
+}
+
+/* Tapón */
+.bottle-cap {
+    width: 40px;
+    height: 20px;
+    background: #74b9ff;
+    border-radius: 5px 5px 0 0;
+    margin: 0 auto;
+    border: 2px solid #2d3436;
+}
+
+/* Cuello */
+.bottle-neck {
+    width: 50px;
+    height: 25px;
+    background: #ecf0f1;
+    margin: 0 auto;
+    border-left: 2px solid #2d3436;
+    border-right: 2px solid #2d3436;
+}
+
+/* Cuerpo principal */
+.bottle-body {
+    position: relative;
+    width: 100px;
+    height: 220px;
+    background: #ecf0f1;
+    border: 2px solid #2d3436;
+    border-radius: 40px 40px 50px 50px;
+    overflow: hidden;
+    margin-top: -3px;
+}
+
+/* Etiqueta azul */
+.bottle-label {
+    position: absolute;
+    top: 35%;
+    left: 0;
+    width: 100%;
+    height: 60px;
+    background: #a4d8f7;
+    border-top: 2px solid #2d3436;
+    border-bottom: 2px solid #2d3436;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 2;
+}
+
+/* Gota dentro de la etiqueta */
+.label-drop {
+    width: 28px;
+    height: 40px;
+    background: #d6f0ff;
+    border-radius: 50% 50% 50% 50% / 60% 60% 40% 40%;
+    position: relative;
+    transform: rotate(180deg);
+    border: 2px solid #2d3436;
+}
+
+.label-drop::before {
+    content: '';
+    position: absolute;
+    top: 25%;
+    left: 25%;
+    width: 50%;
+    height: 50%;
+    background: white;
+    border-radius: 50%;
+    opacity: 0.7;
+}
+
+/* Agua dentro */
+.water {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    background: linear-gradient(180deg, #74b9ff, #0984e3);
+    transition: height 0.8s ease-in-out;
+    z-index: 1;
+    animation: waveMotion 2s infinite ease-in-out;
+}
+
+/* Porcentaje de agua */
+#percentage-text {
+    position: absolute;
+    top: 10px;
+    left: 0;
+    width: 100%;
+    text-align: center;
+    font-weight: 600;
+    font-size: 1rem;
+    color: #2d3436;
+    z-index: 3;
+}
+
+/* === BOTONES Y TEXTOS === */
+
+.buttons {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 10px;
+    margin: 20px 0;
+}
+
+button {
+    background: #0984e3;
+    color: white;
+    border: none;
+    padding: 12px 20px;
+    border-radius: 12px;
+    cursor: pointer;
+    font-size: 14px;
+    font-weight: 600;
+    transition: transform 0.2s, background 0.2s;
+}
+
+button:hover {
+    background: #0773c5;
+    transform: translateY(-2px);
+}
+
+button:active {
+    transform: translateY(0);
+}
+
+.message {
+    font-style: italic;
+    color: #636e72;
+    margin-top: 20px;
+    font-size: 1.1rem;
+}
+
+.progress-text {
+    color: #2d3436;
+    font-size: 1.1rem;
+    font-weight: 600;
+}
+
+.reset-button {
+    background: #e17055;
+    margin-top: 20px;
+    width: 100%;
+    max-width: 200px;
+}
+
+.reset-button:hover {
+    background: #d63031;
+}
+
+/* === ANIMACIONES === */
+
+/* Ondas suaves del agua */
+@keyframes waveMotion {
+    0% { transform: translateY(0px); }
+    50% { transform: translateY(-3px); }
+    100% { transform: translateY(0px); }
+}
+
+/* Pequeña animación cuando llenas o vacías */
+@keyframes shakeAnimation {
+    0%, 100% { transform: rotate(0deg); }
+    20% { transform: rotate(-5deg); }
+    40% { transform: rotate(5deg); }
+    60% { transform: rotate(-5deg); }
+    80% { transform: rotate(5deg); }
+}
+
+.shake {
+    animation: shakeAnimation 0.6s ease-in-out;
+}
+
+/* Efecto de “onda” en los botones */
+.ripple {
+    position: relative;
+    overflow: hidden;
+}
+
+.ripple::after {
+    content: "";
+    position: absolute;
+    width: 10px;
+    height: 10px;
+    background: rgba(255, 255, 255, 0.6);
+    display: block;
+    border-radius: 50%;
+    transform: scale(0);
+    animation: rippleEffect 0.6s linear;
+}
+
+@keyframes rippleEffect {
+    to {
+        transform: scale(15);
+        opacity: 0;
+    }
+}
+
+/* Burbuja de agua */
+@keyframes bubbleRise {
+    0% {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    50% {
+        opacity: 1;
+    }
+    100% {
+        opacity: 0;
+        transform: translateY(-30px);
+    }
+}
+
+.bubble {
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    width: 10px;
+    height: 10px;
+    background: rgba(255, 255, 255, 0.7);
+    border-radius: 50%;
+    animation: bubbleRise 2s infinite ease-in-out;
+}
+
+/* === MODAL === */
+
+.modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.45);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 999;
+    transition: opacity 0.3s ease;
+}
+
+.modal.hidden {
+    opacity: 0;
+    pointer-events: none;
+}
+
+.modal-content {
+    background: rgba(255, 255, 255, 0.95);
+    border-radius: 20px;
+    padding: 30px;
+    max-width: 320px;
+    width: 80%;
+    text-align: center;
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
+    animation: popIn 0.4s ease;
+}
+
+.modal-content p {
+    font-size: 1.2rem;
+    color: #2d3436;
+    margin-bottom: 20px;
+}
+
+.modal-content button {
+    background: #0984e3;
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 10px;
+    cursor: pointer;
+    font-weight: 600;
+    transition: background 0.2s;
+}
+
+.modal-content button:hover {
+    background: #0773c5;
+}
+
+@keyframes popIn {
+    0% { transform: scale(0.8); opacity: 0; }
+    100% { transform: scale(1); opacity: 1; }
+}
+
+/* === RESPONSIVE === */
+@media (max-width: 480px) {
+    .container {
+        margin: 10px;
+        padding: 20px;
+    }
+
+    button {
+        width: 100%;
+    }
+}
+
+@keyframes waveMotion {
+    0% { transform: translateY(0); }
+    50% { transform: translateY(-3px); }
+    100% { transform: translateY(0); }
+}
+
+.water {
+    animation: waveMotion 2s infinite ease-in-out;
+}

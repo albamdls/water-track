@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>WaterTrack</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600&display=swap" rel="stylesheet">
+</head>
+
+<body>
+    <div class="container">
+        <h1>WaterTrack <span class="wave">💧</span></h1>
+        <p class="goal">Objetivo diario: {{ goal / 1000 }} litros</p>
+
+        <div class="bottle-container">
+            <div class="water-bottle">
+                <div class="bottle-cap"></div>
+                <div class="bottle-neck"></div>
+                <div class="bottle-body">
+                    <div class="bottle-label">
+                        <div class="label-drop"></div>
+                    </div>
+                    <div class="water" id="water" style="height: {{ percentage }}%;"></div>
+                    <span id="percentage-text">{{ percentage }}%</span>
+                </div>
+            </div>
+        </div>
+
+        <p class="progress-text">Has bebido {{ progress / 1000 }} L de {{ goal / 1000 }} L</p>
+
+        <div class="buttons">
+            <button onclick="drink(250)" class="ripple">🥛 Vaso (250 ml)</button>
+            <button onclick="drink(350)" class="ripple">🧴 Pequeña (350 ml)</button>
+            <button onclick="drink(500)" class="ripple">🚰 Mediana (500 ml)</button>
+            <button onclick="drink(1000)" class="ripple">💧 Grande (1L)</button>
+        </div>
+
+        <button onclick="reset()" class="reset-button">🔄 Reiniciar contador</button>
+
+        <p id="message" class="message"></p>
+    </div>
+    <!-- 🌟 Modal de mensaje motivacional -->
+    <div id="feedback-modal" class="modal hidden">
+        <div class="modal-content">
+            <p id="modal-message"></p>
+            <button id="close-modal">💧 Seguir</button>
+        </div>
+    </div>
+
+
+    <script src="{{ url_for('static', filename='js/main.js') }}"></script>
+</body>
+
+</html>

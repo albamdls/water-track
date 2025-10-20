@@ -1,0 +1,18 @@
+version: "3.9"
+
+services:
+  # Servicio principal que gestiona el consumo de agua
+  water-service:
+    build: ./water-service          # Ruta del Dockerfile del Water-Service
+    ports:
+      - "5000:5000"                 # Mapea el puerto local 5000 al contenedor
+    environment:
+      - FEEDBACK_SERVICE_URL=http://feedback-service:5001/feedback  # URL del Feedback-Service
+    depends_on:
+      - feedback-service            # Espera a que el Feedback-Service esté listo
+
+  # Servicio de retroalimentación que analiza los datos del usuario
+  feedback-service:
+    build: ./feedback-service       # Ruta del Dockerfile del Feedback-Service
+    ports:
+      - "5001:5001"                 # Mapea el puerto local 5001 al contenedor
